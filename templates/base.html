@@ -21,7 +21,7 @@
         </ul>
         <nav>
             <div class="nav-wrapper">
-                <a href="{{ url_for('recipes') }}" class="brand-logo center">Logo</a>
+                <a href="{{ url_for('recipes') }}" class="brand-logo center">Recipe Nation</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('recipes') }}">Home</a></li>
@@ -46,6 +46,7 @@
 
         </ul>
     </header>
+    <div class="container center"><h4>A Taste Bud Frenzy!</h4></div>
     {% block content %}
     {% endblock %}
 
