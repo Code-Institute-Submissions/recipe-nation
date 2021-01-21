@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="carousel carousel-slider center">
+    <div class="carousel-fixed-item center">
+        <a class="btn waves-effect white grey-text darken-text-2">button</a>
+    </div>
+    {% for recipe in recipes %}
+    <div class="carousel-item red white-text" href="#one!">
+        <h2>{{ recipe.recipe_name }}</h2>
+        <h4>Prep Time: {{ recipe.prep_time }}</h4>
+        <h4>Cook Time: {{ recipe.cook_time }}</h4>
+    </div>
+    {% endfor %}
+
+    <!-- <div class="carousel-item blue white-text" href="#four!">
+        <h2>Fourth Panel</h2>
+        <p class="white-text">This is your fourth panel</p>
+    </div> -->
+</div>
+{% endblock %}
