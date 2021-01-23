@@ -30,7 +30,7 @@
                     <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                                 class="fas fa-caret-down"></i></a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
-                    <li><a href="">Login</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="">Logout</a></li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
             <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="">Logout</a></li>
         </ul>
     </header>
@@ -52,8 +52,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="row flashes">
-                        <h4>{{ messages }}
-                        </h4>
+                        <h4>{{ message }}</h4>
                     </div>
                 {% endfor %}
             {% endif %}
