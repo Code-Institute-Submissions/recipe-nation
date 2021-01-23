@@ -25,46 +25,53 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('recipes') }}">Home</a></li>
-                    <li><a href="">Contribute</a></li>
                     <li><a href="">Search</a></li>
                     <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                                 class="fas fa-caret-down"></i></a></li>
+                    {% if session.user %}
+                    <li><a href="">Contribute</a></li>
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="">Logout</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </nav>
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('recipes') }}">Home</a></li>
-            <li><a href="">Contribute</a></li>
             <li><a href="">Search</a></li>
             <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
+            {% if session.user %}
+            <li><a href="">Contribute</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="">Logout</a></li>
+            {% endif %}
         </ul>
     </header>
 
     <section>
         {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="row flashes">
-                        <h4>{{ message }}</h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h4>{{ message }}</h4>
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
     </section>
 
     <main class="container">
-    {% block content %}
-    {% endblock %}
-</main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
     <footer class="page-footer">
         <div class="container">
