@@ -29,6 +29,7 @@
                     <li><a href="">Search</a></li>
                     <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                                 class="fas fa-caret-down"></i></a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="">Logout</a></li>
@@ -41,6 +42,7 @@
             <li><a href="">Search</a></li>
             <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
             <li><a href="">Logout</a></li>
