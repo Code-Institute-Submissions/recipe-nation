@@ -100,6 +100,12 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/search")
+def search():
+    recipes = mongo.db.recipes.find()
+    return render_template("search.html", recipes=recipes)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),

@@ -25,7 +25,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('recipes') }}">Home</a></li>
-                    <li><a href="">Search</a></li>
+                    <li><a href="{{ url_for('search') }}">Search</a></li>
                     <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                                 class="fas fa-caret-down"></i></a></li>
                     {% if session.user %}
@@ -42,7 +42,7 @@
         </nav>
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('recipes') }}">Home</a></li>
-            <li><a href="">Search</a></li>
+            <li><a href="{{ url_for('search') }}">Search</a></li>
             <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
             {% if session.user %}
