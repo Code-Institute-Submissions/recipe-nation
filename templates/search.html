@@ -4,6 +4,7 @@
     <h4>Search All Recipes</h4>
 </div>
 
+
 {% for recipe in recipes %}
 <div class="card">
     <div class="card-content">
@@ -18,7 +19,7 @@
     </div>
     <div class="card-content grey lighten-4">
       <div id="time"><p>Prep Time: {{ recipe.prep_time }}</p><br><p>Cook Time: {{ recipe.cook_time }}</p></div>
-      <div id="ingredidents">{{ recipe.ingredients }}</div>
+      <div id="ingredidents">{{ recipe.ingredientsstr }}</div>
       <div id="method">{{ recipe.method }}</div>
     </div>
   </div>

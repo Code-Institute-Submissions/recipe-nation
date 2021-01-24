@@ -29,7 +29,7 @@
                     <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                                 class="fas fa-caret-down"></i></a></li>
                     {% if session.user %}
-                    <li><a href="">Contribute</a></li>
+                    <li><a href="{{ url_for('add_recipe') }}">Contribute</a></li>
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
@@ -46,7 +46,7 @@
             <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
             {% if session.user %}
-            <li><a href="">Contribute</a></li>
+            <li><a href="{{ url_for('add_recipe') }}">Contribute</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
