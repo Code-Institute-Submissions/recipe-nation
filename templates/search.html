@@ -8,21 +8,24 @@
 {% for recipe in recipes %}
 <div class="card">
     <div class="card-content">
-      <img src="{{ recipe.image }}" alt="Picture for: {{ recipe.recipe_name }}">
+        <img src="{{ recipe.image }}" alt="Picture for: {{ recipe.recipe_name }}">
     </div>
     <div class="card-tabs">
-      <ul class="tabs tabs-fixed-width">
-        <li class="tab"><a class="active" href="#time">Time</a></li>
-        <li class="tab"><a href="#ingredients">Ingredients</a></li>
-        <li class="tab"><a href="#method">Method</a></li>
-      </ul>
+        <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a class="active" href="#time">Time</a></li>
+            <li class="tab"><a href="#ingredients">Ingredients</a></li>
+            <li class="tab"><a href="#method">Method</a></li>
+        </ul>
     </div>
     <div class="card-content grey lighten-4">
-      <div id="time"><p>Prep Time: {{ recipe.prep_time }}</p><br><p>Cook Time: {{ recipe.cook_time }}</p></div>
-      <div id="ingredidents">{{ recipe.ingredientsstr }}</div>
-      <div id="method">{{ recipe.method }}</div>
+        <div id="time">
+            <p>Prep Time: {{ recipe.prep_time }}</p><br>
+            <p>Cook Time: {{ recipe.cook_time }}</p>
+        </div>
+        <div id="ingredidents">{{ recipe.ingredientsstr }}</div>
+        <div id="method">{{ recipe.method }}</div>
     </div>
-  </div>
+</div>
 {% endfor %}
 
 {% endblock %}

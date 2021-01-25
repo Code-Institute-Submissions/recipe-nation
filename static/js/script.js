@@ -9,19 +9,6 @@ $(document).ready(function(){
     indicators: true,
   });
   
-  let counter = 1;
-  let limit = 30;
-    function addIngredient(divName){
-    if (counter == limit)  {
-        alert("You have reached the limit of adding " + counter + " ingredients");
-     }
-     else {
-        let newdiv = document.createElement('div');
-        newdiv.innerHTML = "Ingredient " + (counter + 1) + ' <br><input type="text"  placeholder="Ingredient" name="myIngredients[]">';
-        document.getElementById(divName).appendChild(newdiv);
-        counter++;
-     }
-}
   });
 
 
