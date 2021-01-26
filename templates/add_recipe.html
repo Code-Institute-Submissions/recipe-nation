@@ -39,6 +39,16 @@
                 <a class="waves-effect waves-light btn" onClick="addIngredient('dynamicInput');">Add Another Ingredient</a>
             </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-wrench prefix"></i>
+                <input id="method" type="text" name="method" minlength="3" maxlength="250" class="validate"
+                    required>
+                    <div id="dynamicInputTwo"></div>
+                <label for="method" placeholder="Method">Step 1</label>
+                <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
+            </div>
+        </div>
     </form>
 </div>
 
