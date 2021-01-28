@@ -5,7 +5,7 @@
 </h4>
 
 <div class="row">
-    <form class="col s12" method="POST">
+    <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-pencil-alt prefix"></i>
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-carrot prefix"></i>
-                <input id="ingredients" type="text" name="ingredients" minlength="3" maxlength="30" class="validate"
+                <input id="ingredients" type="text" name="ingredients" minlength="3" maxlength="60" class="validate"
                     required>
                 <div id="dynamicInput"></div>
                 <label for="ingredients" placeholder="Ingredient">Ingredient 1</label>
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-wrench prefix"></i>
-                <input id="method" type="text" name="method" minlength="3" maxlength="250" class="validate" required>
+                <input id="method" type="text" name="method" minlength="3" maxlength="300" class="validate" required>
                 <div id="dynamicInputTwo"></div>
                 <label for="method" placeholder="Method">Step 1</label>
                 <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
@@ -51,27 +51,37 @@
         </div>
         <div class="input-field col s12">
             <i class="fas fa-check-double prefix"></i>
-            <select multiple required>
+            <select multiple id="type" name="type" required>
                 {% for type in types %}
-                <option value="1" required>{{ type.type }}</option>
+                <option value="1">{{ type.type }}</option>
                 {% endfor %}
             </select>
             <label>Type Of Recipe</label>
         </div>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+        <div class="row">
+        <div class="col s12 center-align">
+            <button type="submit" class="waves-effect waves-light btn">Submit</button>
+            <button class="waves-effect waves-light btn">Cancel</button>
+        </div>
+        </div>
     </form>
 </div>
-<form action="#">
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>File</span>
-            <input type="file">
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <a class="waves-effect waves-light btn">Submit</a>
-    <a class="waves-effect waves-light btn">Cancel</a>
-</form>
+
+<!-- <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+                        Add Task <i class="fas fa-plus-square right"></i>
+                    </button>
+                </div>
+            </div> -->
 
 {% endblock %}

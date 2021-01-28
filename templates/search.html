@@ -7,6 +7,10 @@
 
 {% for recipe in recipes %}
 <div class="card">
+    <div>
+        <h5>{{ recipe.recipe_name }}</h5>
+        <p><em>By: {{ recipe.user_id }}</em></p>
+    </div>
     <div class="card-content">
         <img src="{{ recipe.image }}" alt="Picture for: {{ recipe.recipe_name }}">
     </div>
