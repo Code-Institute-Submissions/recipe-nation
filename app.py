@@ -108,7 +108,7 @@ def search():
 
 @app.route("/add_recipe")
 def add_recipe():
-    types = mongo.db.types.find()
+    types = mongo.db.types.find().sort("type", 1)
     return render_template("add_recipe.html", types=types)
 
 
