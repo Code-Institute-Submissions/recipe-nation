@@ -51,10 +51,9 @@
         </div>
         <div class="input-field col s12">
             <i class="fas fa-check-double prefix"></i>
-            <select multiple>
-                <option value="" disabled selected> Choose your option</option>
+            <select multiple required>
                 {% for type in types %}
-                <option value="1">{{ type.type }}</option>
+                <option value="1" required>{{ type.type }}</option>
                 {% endfor %}
             </select>
             <label>Type Of Recipe</label>
