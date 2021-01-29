@@ -62,11 +62,11 @@ def login():
         if existing_user:
             # ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
 
             else:
                 # invalid password match
@@ -102,23 +102,29 @@ def logout():
 
 @app.route("/search")
 def search():
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
+    for recipe in recipes:
+        try: 
+            recipe["user_id"] = mongo.db.users.find_one({"_id": recipe["user_id"] })["username"]
+        except:
+            pass
     return render_template("search.html", recipes=recipes)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        recipe = {
+        user = mongo.db.users.find_one({"username":session["user"]})
+        new_recipe = {
             "recipe_name": request.form.get("recipe_name"),
             "prep_time": request.form.get("prep_time"),
             "cook_time": request.form.get("cook_time"),
             "ingredients": request.form.getlist("ingredients"),
             "method": request.form.getlist("method"),
             "type": request.form.getlist("type"),
-            "user_id": session["user"]
+            "user_id": ObjectId(user["_id"])
         }
-        mongo.db.recipes.insert_one(recipe)
+        mongo.db.recipes.insert_one(new_recipe)
         flash("Recipe Successfully Added")
         return redirect(url_for("add_recipe"))
 
@@ -126,8 +132,15 @@ def add_recipe():
     return render_template("add_recipe.html", types=types)
 
 
+@app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    types = mongo.db.types.find().sort("type", 1)
+    return render_template("edit_recipe.html", recipe=recipe, types=types)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
-        port=int(os.environ.get("PORT")),
-        debug=True)
+            port=int(os.environ.get("PORT")),
+            debug=True)
 # Remember to change debug to False before submitting project
