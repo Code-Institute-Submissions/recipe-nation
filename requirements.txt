@@ -1,7 +1,12 @@
+boto3==1.16.63
+botocore==1.19.63
+bson==0.5.10
 click==7.1.2
-dnspython==2.1.0
+flash==1.0.3
 Flask==1.1.2
 Flask-PyMongo==2.3.0
 itsdangerous==1.1.0
+jmespath==0.10.0
 pymongo==3.11.2
+s3transfer==0.3.4
 Werkzeug==1.0.1
