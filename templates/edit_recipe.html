@@ -1,41 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 <h4>
-    Add Your Own Recipe To The Site!
+    Edit Your Recipe
 </h4>
 
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}" enctype="multipart/form-data">
+    <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-pencil-alt prefix"></i>
                 <input id="recipe_name" type="text" name="recipe_name" minlength="5" maxlength="50" class="validate"
-                    required>
+                    value="{{ recipe.recipe_name }}" required>
                 <label for="recipe_name">Recipe Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-blender prefix"></i>
-                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins" required>
+                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                    value="{{ recipe.prep_time }}" required>
                 <label for="prep_time">Prep Time</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-bacon prefix"></i>
-                <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate" 
-                placeholder="eg. 1 hr and 15 mins" required>
+                <input id="cook_time" type="text" name="cook_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                    value="{{ recipe.cook_time }}" required>
                 <label for="cook_time">Cook Time</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-carrot prefix"></i>
-                <input id="ingredients" type="text" name="ingredients" minlength="3" maxlength="60" class="validate"
+                <input id="ingredients" type="text" name="ingredients" class="validate" value="{{ recipe.ingredients }}"
                     required>
                 <div id="dynamicInput"></div>
-                <label for="ingredients" >Ingredient 1</label>
+                <label for="ingredients">To add an ingredient, type it inside the existing square brackets [ ] and place
+                    ' ' either side. eg. '20g chocolate'. To edit, type over the existing text</label>
                 <a class="waves-effect waves-light btn" onClick="addIngredient('dynamicInput');">Add Another
                     Ingredient</a>
             </div>
@@ -43,10 +45,12 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-wrench prefix"></i>
-                <input id="method" type="text" name="method" minlength="3" maxlength="300" class="validate" required>
+                <input id="method" type="text" name="method" class="validate" value="{{ recipe.method }}" required>
                 <div id="dynamicInputTwo"></div>
-                <label for="method" >Step 1</label>
+                <label for="method">To add a method, type it inside the existing square brackets [ ] and place ' '
+                    either side. eg. 'boil for 10 mins'. To edit, type over the existing text</label>
                 <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
+
             </div>
         </div>
         <div class="row">
@@ -54,38 +58,26 @@
                 <i class="fas fa-check-double prefix"></i>
                 <select multiple id="type" name="type" required>
                     {% for type in types %}
+                    {% if type.type == true %}
+                    <option value="{{ type.type }}" selected>{{ type.type }}</option>
+                    {% else %}
                     <option value="{{ type.type }}">{{ type.type }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
                 <label>Type Of Recipe</label>
             </div>
         </div>
         <div class="row">
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span for="user_file">File</span>
-                    <input type="file" name="user_file" accept=".png, .jpg, .jpeg, .gif" required>
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload Image file (only .png, .jpg, .jpeg, .gif)">
-                </div>
-            </div>
+            <input name="user_file" id="user_file" >
         </div>
         <div class="row">
             <div class="col s12 center-align">
-                <button type="submit" class="waves-effect waves-light btn">Submit</button>
-                <button class="waves-effect waves-light btn">Cancel</button>
+                <button type="submit" class="waves-effect waves-light btn">Edit Recipe</button>
+                <a href="{{ url_for('search') }}" class="waves-effect waves-light btn">Cancel</a>
             </div>
         </div>
     </form>
 </div>
-
-<!-- <div class="row">
-                <div class="col s12 center-align">
-                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
-                        Add Task <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
-            </div> -->
 
 {% endblock %}
