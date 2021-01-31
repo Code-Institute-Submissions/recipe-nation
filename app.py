@@ -1,17 +1,20 @@
 import os
+import boto3, botocore
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 if os.path.exists("env.py"):
     import env
 
 
+# flask
 app = Flask(__name__)
 
-
+# mondodb
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -20,6 +23,76 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# Amazon S3 Bucket
+S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME")
+S3_ACCESS_KEY = os.environ.get("S3_ACCESS_KEY")
+S3_SECRET_ACCESS_KEY = os.environ.get("S3_SECRET_ACCESS_KEY")
+S3_LOCATION = 'http://recipe-image-repo.s3.eu-west-2.amazonaws.com/'.format(S3_BUCKET_NAME)
+
+
+s3 = boto3.client(
+    "s3",
+    aws_access_key_id=S3_ACCESS_KEY,
+    aws_secret_access_key=S3_SECRET_ACCESS_KEY
+)
+
+# Image upload restrictions
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
+# Amazon S3 Bucket Functions
+
+
+def allowed_file(filename):
+
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def upload_file():
+    # Output will be blank if user_file key not found on submission
+    output = ""
+
+    if "user_file" not in request.files:
+
+        return output
+
+    # If the key is in the object, save it in file variable
+    file = request.files["user_file"]
+
+    # Check the filename, if it's blank, leave it blank
+    if file.filename == "":
+
+        return output
+
+    # Check that there is a file and that it has an allowed filetype
+    if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = upload_file_to_s3(file)
+
+    return output
+
+
+def upload_file_to_s3(file, acl="public-read"):
+    try:
+        # Upload image to s3
+        s3.upload_fileobj(
+            file,
+            S3_BUCKET_NAME,
+            file.filename,
+            ExtraArgs={
+                'ACL': acl,
+                "ContentType": file.content_type
+            }
+        )
+
+    except Exception as e:
+        print("Something Happened: ", e)
+        return e
+
+    return "{}{}".format(S3_LOCATION, file.filename)
+
+
+# Routes
 @app.route("/")
 @app.route("/get_recipes")
 def recipes():
@@ -104,8 +177,9 @@ def logout():
 def search():
     recipes = list(mongo.db.recipes.find())
     for recipe in recipes:
-        try: 
-            recipe["user_id"] = mongo.db.users.find_one({"_id": recipe["user_id"] })["username"]
+        try:
+            recipe["user_id"] = mongo.db.users.find_one(
+                {"_id": recipe["user_id"]})["username"]
         except:
             pass
     return render_template("search.html", recipes=recipes)
@@ -114,7 +188,7 @@ def search():
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        user = mongo.db.users.find_one({"username":session["user"]})
+        user = mongo.db.users.find_one({"username": session["user"]})
         new_recipe = {
             "recipe_name": request.form.get("recipe_name"),
             "prep_time": request.form.get("prep_time"),
@@ -122,6 +196,7 @@ def add_recipe():
             "ingredients": request.form.getlist("ingredients"),
             "method": request.form.getlist("method"),
             "type": request.form.getlist("type"),
+            "user_file": upload_file(),
             "user_id": ObjectId(user["_id"])
         }
         mongo.db.recipes.insert_one(new_recipe)
