@@ -4,34 +4,31 @@
     <h4>Search All Recipes</h4>
 </div>
 
-
 {% for recipe in recipes %}
-<div class="card">
-    <div>
-        <h5>{{ recipe.recipe_name }}</h5>
-        <p><em>By: {{ recipe.user_id }}</em></p>
-    </div>
-    <div class="card-content">
-        <img src="{{ recipe.image }}" alt="Picture for: {{ recipe.recipe_name }}">
-    </div>
-    <div class="card-tabs">
-        <ul class="tabs tabs-fixed-width">
-            <li class="tab"><a class="active" href="#time">Time</a></li>
-            <li class="tab"><a href="#ingredients">Ingredients</a></li>
-            <li class="tab"><a href="#method">Method</a></li>
-        </ul>
-    </div>
-    <div class="card-content grey lighten-4">
-        <div id="time">
+<div class="container recipe-card">
+    <div class="row s12">
+        <div class="col s12">
+            <h5>{{ recipe.recipe_name }}</h5>
+        </div>
+        <div class="col s12 m6">
+            <img src="{{ recipe.image }}" alt="Picture for: {{ recipe.recipe_name }}">
+        </div>
+        <div class="col s12 m6">
+            <p><em>By: {{ recipe.user_id }}</em></p><br>
             <p>Prep Time: {{ recipe.prep_time }}</p><br>
             <p>Cook Time: {{ recipe.cook_time }}</p>
         </div>
-        <div id="ingredidents">{{ recipe.ingredients }}</div>
-        <div id="method">{{ recipe.method }}</div>
-        <a href="#" class="waves-effect waves-light btn-small">Edit</a>
-        <a href="#" class="waves-effect waves-light btn-small">Delete</a>
+    </div>
+    <div class="row s12">
+        <div class="col s12 m6">
+            <h5>Ingredients</h5>
+            {{ recipe.ingredients }}
+        </div>
+        <div class="col s12 m6">
+            <h5>Method</h5>
+            {{ recipe.method }}
+        </div>
     </div>
 </div>
 {% endfor %}
-
 {% endblock %}
