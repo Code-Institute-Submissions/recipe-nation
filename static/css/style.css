@@ -5,3 +5,7 @@ div h4 {
 .recipe-card {
     border-style: solid;
 }
+
+.list-style {
+    margin-bottom: 1em;
+}

@@ -31,35 +31,40 @@
             </div>
         </div>
         <div class="row">
+            {% for ingredient in recipe.ingredients %}
             <div class="input-field col s12">
                 <i class="fas fa-carrot prefix"></i>
-                <input id="ingredients" type="text" name="ingredients" class="validate" value="{{ recipe.ingredients }}"
+                <input id="ingredients" type="text" name="ingredients" class="validate" value="{{ ingredient }}"
                     required>
-                <div id="dynamicInput"></div>
-                <label for="ingredients">To add an ingredient, type it inside the existing square brackets [ ] and place
-                    ' ' either side. eg. '20g chocolate'. To edit, type over the existing text</label>
-                <a class="waves-effect waves-light btn" onClick="addIngredient('dynamicInput');">Add Another
-                    Ingredient</a>
+
+                <label for="ingredients">Ingredient</label>
             </div>
+
+            {% endfor %}
+            <a class="waves-effect waves-light btn" onClick="addIngredient('dynamicInput');">Add Another
+                Ingredient</a>
+            <div id="dynamicInput"></div>
         </div>
+
         <div class="row">
+            {% for method in recipe.method %}
             <div class="input-field col s12">
                 <i class="fas fa-wrench prefix"></i>
-                <input id="method" type="text" name="method" class="validate" value="{{ recipe.method }}" required>
-                <div id="dynamicInputTwo"></div>
-                <label for="method">To add a method, type it inside the existing square brackets [ ] and place ' '
-                    either side. eg. 'boil for 10 mins'. To edit, type over the existing text</label>
-                <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
+                <input id="method" type="text" name="method" class="validate" value="{{ method }}" required>
 
+                <label for="method">Method</label>
             </div>
+            {% endfor %}
+            <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
+            <div id="dynamicInputTwo"></div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-check-double prefix"></i>
                 <select multiple id="type" name="type" required>
                     {% for type in types %}
-                    {% if type.type == true %}
-                    <option value="{{ type.type }}" selected>{{ type.type }}</option>
+                    {% if type.type in recipe.type%}
+                    <option value="{{ type.type }}" selected="selected">{{ type.type }}</option>
                     {% else %}
                     <option value="{{ type.type }}">{{ type.type }}</option>
                     {% endif %}
@@ -69,7 +74,12 @@
             </div>
         </div>
         <div class="row">
-            <input name="user_file" id="user_file" >
+            <div class="input-field col s12">
+                <i class="fas fa-bacon prefix"></i>
+                <input id="user_file" type="text" name="user_file" class="validate" value="{{ recipe.user_file }}"
+                    required />
+                <label for="user_file">Image</label>
+            </div>
         </div>
         <div class="row">
             <div class="col s12 center-align">

@@ -177,13 +177,14 @@ def logout():
 @app.route("/search")
 def search():
     recipes = list(mongo.db.recipes.find())
+    ingredients=list(mongo.db.ingredients.find())
     for recipe in recipes:
         try:
             recipe["user_id"] = mongo.db.users.find_one(
                 {"_id": recipe["user_id"]})["username"]
         except:
             pass
-    return render_template("search.html", recipes=recipes)
+    return render_template("search.html", recipes=recipes, ingredients=ingredients)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])
@@ -224,7 +225,7 @@ def edit_recipe(recipe_id):
         }
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, edit_recipe)
         flash("Recipe Successfully Edited")
-        
+
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     types = mongo.db.types.find().sort("type", 1)
     return render_template("edit_recipe.html", recipe=recipe, types=types)

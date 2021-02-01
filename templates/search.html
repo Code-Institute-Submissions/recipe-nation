@@ -22,11 +22,19 @@
     <div class="row s12">
         <div class="col s12 m6">
             <h5>Ingredients</h5>
-            {{ recipe.ingredients }}
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                <li class="list-style">{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="col s12 m6">
             <h5>Method</h5>
-            {{ recipe.method }}
+            <ul>
+                {% for method in recipe.method %}
+                <li class="list-style">{{ method }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="s12">
@@ -34,5 +42,6 @@
         <a class="waves-effect waves-light btn-small">Delete</a>
     </div>
 </div>
+
 {% endfor %}
 {% endblock %}
