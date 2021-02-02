@@ -28,7 +28,8 @@ mongo = PyMongo(app)
 S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME")
 S3_ACCESS_KEY = os.environ.get("S3_ACCESS_KEY")
 S3_SECRET_ACCESS_KEY = os.environ.get("S3_SECRET_ACCESS_KEY")
-S3_LOCATION = 'http://recipe-image-repo.s3.eu-west-2.amazonaws.com/'.format(S3_BUCKET_NAME)
+S3_LOCATION = 'http://recipe-image-repo.s3.eu-west-2.amazonaws.com/'.format(
+    S3_BUCKET_NAME)
 
 
 s3 = boto3.client(
@@ -98,7 +99,31 @@ def upload_file_to_s3(file, acl="public-read"):
 @app.route("/get_recipes")
 def recipes():
     recipes = list(mongo.db.recipes.find())
+    for recipe in recipes:
+        try:
+            recipe["user_id"] = mongo.db.users.find_one(
+                {"_id": recipe["user_id"]})["username"]
+        except:
+            pass
     return render_template("index.html", recipes=recipes)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        query = request.form.get("query")
+        recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+        all_recipes = list(mongo.db.recipes.find())
+        print(recipes)
+        for recipe in recipes:
+            try:
+                recipe["user_id"] = mongo.db.users.find_one(
+                {"_id": recipe["user_id"]})["username"]
+            except:
+                pass
+        return render_template("search.html", recipes=recipes)
+    
+    return render_template("search.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -172,19 +197,6 @@ def logout():
     flash("You've been logged out")
     session.pop("user")
     return redirect(url_for("login"))
-
-
-@app.route("/search")
-def search():
-    recipes = list(mongo.db.recipes.find())
-    ingredients=list(mongo.db.ingredients.find())
-    for recipe in recipes:
-        try:
-            recipe["user_id"] = mongo.db.users.find_one(
-                {"_id": recipe["user_id"]})["username"]
-        except:
-            pass
-    return render_template("search.html", recipes=recipes, ingredients=ingredients)
 
 
 @app.route("/add_recipe", methods=["GET", "POST"])

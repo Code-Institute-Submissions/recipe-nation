@@ -4,6 +4,7 @@ $(document).ready(function () {
         hover: true,
         coverTrigger: false
     });
+    $('.modal').modal();
     $('.carousel.carousel-slider').carousel({
         // fullWidth: true,
         indicators: true,
