@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <h4>Search All Recipes</h4>
+    <h4>Search Recipes</h4>
 </div>
 
 <form action="{{ url_for('search') }}" method="POST" class="col s12">
@@ -22,7 +22,7 @@
 <div class="container recipe-card">
     <div class="row s12">
         <div class="col s12">
-            <h5>{{ recipe.recipe_name }}</h5>
+            <h5>{{ recipe_name }}</h5>
         </div>
         <div class="col s12 m6">
             <img src="{{ recipe.user_file }}" alt="Picture for: {{ recipe.recipe_name }}">

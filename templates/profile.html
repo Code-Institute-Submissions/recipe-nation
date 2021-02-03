@@ -9,4 +9,61 @@
     </div>
 </div>
 
+
+{% for recipe in recipes %}
+    {% if session.user|lower == recipe.user_id|lower %}
+<div class="container recipe-card">
+    <div class="row s12">
+        <div class="col s12">
+            <h5>{{ recipe.recipe_name }}</h5>
+        </div>
+        <div class="col s12 m6">
+            <img src="{{ recipe.user_file }}" alt="Picture for: {{ recipe.recipe_name }}">
+        </div>
+        <div class="col s12 m6">
+            <p><em>By: {{ recipe.user_id }}</em></p><br>
+            <p>Prep Time: {{ recipe.prep_time }}</p><br>
+            <p>Cook Time: {{ recipe.cook_time }}</p>
+        </div>
+    </div>
+    <div class="row s12">
+        <div class="col s12 m6">
+            <h5>Ingredients</h5>
+            <ul>
+                {% for ingredient in recipe.ingredients %}
+                <li class="list-style">{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col s12 m6">
+            <h5>Method</h5>
+            <ul>
+                {% for method in recipe.method %}
+                <li class="list-style">{{ method }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="s12">
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn-small">Edit</a>
+        <a class="waves-effect waves-light btn-small modal-trigger" href="#modal1">Delete</a>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Are you sure you want to delete this recipe?</h4>
+                <p>If you delete this recipe, there's no going back. It'll be gone, GONE FOREVER!!!!! </p>
+                <p>Well, you could add it again but you get the point!</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"
+                    class="modal-close waves-effect waves-green btn-flat">Delete</a>
+                <a href="{{ url_for('search') }}" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endif %}
+{% endfor %}
+
+
 {% endblock %}
