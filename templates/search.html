@@ -5,7 +5,7 @@
 </div>
 
 <form action="{{ url_for('search') }}" method="POST" class="col s12">
-    <div class="row valign-wrapper center-align">
+    <div class="row valign-wrapper center-align z-depth-2">
         <div class="input-field col s12 m8">
             <i fas fa-search prefix></i>
             <input type="text" id="query" class="validate" name="query" minlength="3" required>
@@ -20,12 +20,12 @@
 
 {% for recipe in recipes %}
 <div class="container recipe-card">
-    <div class="row s12">
+    <div class="row s12 z-depth-2">
         <div class="col s12">
             <h5>{{ recipe_name }}</h5>
         </div>
         <div class="col s12 m6">
-            <img src="{{ recipe.user_file }}" alt="Picture for: {{ recipe.recipe_name }}">
+            <img src="{{ recipe.user_file }}" alt="Picture for: {{ recipe.recipe_name }}" class="responsive-img">
         </div>
         <div class="col s12 m6">
             <p><em>By: {{ recipe.user_id }}</em></p><br>

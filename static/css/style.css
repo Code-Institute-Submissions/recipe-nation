@@ -1,6 +1,14 @@
+/* font family and slicky footer formatting */
 body {
     font-family: lato, sans-serif;
+        display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
+  main {
+    flex: 1 0 auto;
+  }
 
 div h4 {
     text-align: center;
@@ -8,6 +16,9 @@ div h4 {
 
 .recipe-card {
     border-style: solid;
+    margin-bottom: 5%;
+    border-color: #827717;
+    width: 100%;
 }
 
 .list-style {
@@ -28,3 +39,11 @@ div h4 {
 .car-col {
     background-color: #b2dfdb;
 }
+
+
+
+
+body {
+
+  }
+
