@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="title-style">
     <h4>Search Recipes</h4>
 </div>
 
-<form action="{{ url_for('search') }}" method="POST" class="col s12">
-    <div class="row valign-wrapper center-align z-depth-2">
+<form action="{{ url_for('search') }}" method="POST" class="col s12 srch-bg-col">
+    <div class="row valign-wrapper center-align srch-style">
         <div class="input-field col s12 m8">
             <i fas fa-search prefix></i>
             <input type="text" id="query" class="validate" name="query" minlength="3" required>
@@ -20,9 +20,9 @@
 
 {% for recipe in recipes %}
 <div class="container recipe-card">
-    <div class="row s12 z-depth-2">
+    <div class="row s12">
         <div class="col s12">
-            <h5>{{ recipe_name }}</h5>
+            <h5>{{ recipe.recipe_name }}</h5>
         </div>
         <div class="col s12 m6">
             <img src="{{ recipe.user_file }}" alt="Picture for: {{ recipe.recipe_name }}" class="responsive-img">
@@ -58,7 +58,7 @@
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
-                <h4>Are you sure you want to delete this recipe?</h4>
+                <h5>Are you sure you want to delete this recipe?</h5>
                 <p>If you delete this recipe, there's no going back. It'll be gone, GONE FOREVER!!!!! </p>
                 <p>Well, you could add it again but you get the point!</p>
                 </div>

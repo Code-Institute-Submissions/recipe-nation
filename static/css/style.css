@@ -1,30 +1,53 @@
 /* font family and slicky footer formatting */
 body {
     font-family: lato, sans-serif;
-        display: flex;
+    display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-image: url('https://recipe-image-repo.s3.eu-west-2.amazonaws.com/cooking-tools-seamless-pattern-background-set-vector-15878072.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
   main {
     flex: 1 0 auto;
   }
 
-div h4 {
+/* page headders */
+.title-style {
     text-align: center;
     padding-top: 2em;
     padding-bottom: 2em;
+    background-color: #b2dfdb;
+    margin-top: 5%;
 }
 
+
+/* section titles */
+
+div h5 {
+    text-align: center;
+}
+
+/* recipe cards & search panel*/
 .recipe-card {
     border-style: solid;
     margin-bottom: 5%;
     border-color: #827717;
     width: 100%;
+    background-color: #e0f2f1;
 }
+
+button
 
 .list-style {
     margin-bottom: 1em;
+}
+
+.srch-style {
+        padding-left: 2em;
+        padding-bottom: 2em;
 }
 
 
@@ -42,10 +65,25 @@ div h4 {
     background-color: #b2dfdb;
 }
 
+.srch-bg-col {
+    background-color: #b2dfdb;
 
+}
 
+.form-bg-col{
+    background-color: #b2dfdb;
+}
 
-body {
-
-  }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #616161;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #616161;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #616161;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #616161;
+}
 

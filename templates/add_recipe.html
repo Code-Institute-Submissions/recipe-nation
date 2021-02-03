@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<div><h4>
+<div class="title-style s6"><h4>
     Add Your Own Recipe To The Site!
 </h4>
 </div>
 
-<div class="row">
+<div class="row form-bg-col">
     <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s12">
@@ -75,18 +75,10 @@
         <div class="row">
             <div class="col s12 center-align">
                 <button type="submit" class="waves-effect waves-light btn">Submit</button>
-                <button class="waves-effect waves-light btn">Cancel</button>
+                <a href="{{ url_for('recipes') }}" class="waves-effect waves-light btn">Cancel</a>
             </div>
         </div>
     </form>
 </div>
-
-<!-- <div class="row">
-                <div class="col s12 center-align">
-                    <button type="submit" class="btn-large light-blue darken-1 text-shadow">
-                        Add Task <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
-            </div> -->
 
 {% endblock %}
