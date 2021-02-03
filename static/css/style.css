@@ -12,6 +12,8 @@ body {
 
 div h4 {
     text-align: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .recipe-card {
