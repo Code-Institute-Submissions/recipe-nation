@@ -118,7 +118,7 @@ def search():
         for recipe in recipes:
             try:
                 recipe["user_id"] = mongo.db.users.find_one(
-                {"_id": recipe["user_id"]})["username"]
+                    {"_id": recipe["user_id"]})["username"]
             except:
                 pass
         return render_template("search.html", recipes=recipes)
@@ -163,7 +163,8 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username").capitalize()))
+                flash("Welcome, {}".format(
+                    request.form.get("username").capitalize()))
                 return redirect(url_for(
                     "profile", username=session["user"]))
 
@@ -191,7 +192,8 @@ def profile(username):
                     {"_id": recipe["user_id"]})["username"]
             except:
                 pass
-        return render_template("profile.html", username=username.capitalize(), recipes=recipes)
+        return render_template(
+            "profile.html", username=username.capitalize(), recipes=recipes)
 
     return redirect(url_for("login"))
 
@@ -253,6 +255,11 @@ def delete_recipe(recipe_id):
     flash("Recipe Deleted")
     return redirect(url_for("search"))
 
+
+@app.route("/all_recipes")
+def all_recipes():
+    recipes = list(mongo.db.recipes.find())
+    return render_template("all.html", recipes=recipes)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

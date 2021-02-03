@@ -18,13 +18,21 @@
 <body>
     <header>
         <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">One</a></li>
-            <li><a href="#!">two</a></li>
-            <li><a href="#!">three</a></li>
+            <li><a href="{{ url_for('all_recipes') }}">All</a></li>
+            <li><a href="#!">Breakfast</a></li>
+            <li><a href="#!">Lunch</a></li>
+            <li><a href="#!">Dinner</a></li>
+            <li><a href="#!">Cake!</a></li>
+        </ul>
+            <ul id="dropdown2" class="dropdown-content">
+            <li><a href="{{ url_for('all_recipes') }}">All</a></li>
+            <li><a href="#!">Breakfast</a></li>
+            <li><a href="#!">Lunch</a></li>
+            <li><a href="#!">Dinner</a></li>
+            <li><a href="#!">Cake!</a></li>
         </ul>
         <nav>
             <div class="nav-wrapper nav-col">
-
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="left hide-on-med-and-down">
                     <li><a href="{{ url_for('recipes') }}">Home</a></li>
@@ -49,7 +57,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('recipes') }}">Home</a></li>
             <li><a href="{{ url_for('search') }}">Search</a></li>
-            <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
+            <li><a href="" class="dropdown-trigger" data-target="dropdown2">Browse Recipes <i
                         class="fas fa-caret-down"></i></a></li>
             {% if session.user %}
             <li><a href="{{ url_for('add_recipe') }}">Contribute</a></li>
