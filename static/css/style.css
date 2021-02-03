@@ -39,7 +39,13 @@ div h5 {
     background-color: #e0f2f1;
 }
 
-button
+/* buttons */
+
+.button-style {
+    margin: 1em;
+    text-align: center;
+}
+
 
 .list-style {
     margin-bottom: 1em;

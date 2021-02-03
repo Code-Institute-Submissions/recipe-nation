@@ -17,28 +17,13 @@
 </head>
 <body>
     <header>
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="{{ url_for('all_recipes') }}">All</a></li>
-            <li><a href="#!">Breakfast</a></li>
-            <li><a href="#!">Lunch</a></li>
-            <li><a href="#!">Dinner</a></li>
-            <li><a href="#!">Cake!</a></li>
-        </ul>
-            <ul id="dropdown2" class="dropdown-content">
-            <li><a href="{{ url_for('all_recipes') }}">All</a></li>
-            <li><a href="#!">Breakfast</a></li>
-            <li><a href="#!">Lunch</a></li>
-            <li><a href="#!">Dinner</a></li>
-            <li><a href="#!">Cake!</a></li>
-        </ul>
         <nav>
             <div class="nav-wrapper nav-col">
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
                 <ul class="left hide-on-med-and-down">
                     <li><a href="{{ url_for('recipes') }}">Home</a></li>
                     <li><a href="{{ url_for('search') }}">Search</a></li>
-                    <li><a href="" class="dropdown-trigger" data-target="dropdown1">Browse Recipes <i
-                                class="fas fa-caret-down"></i></a></li>
+                    <li><a href="{{ url_for('all_recipes') }}">Browse All Recipes</a></li>
                 </ul>
                 <a href="{{ url_for('recipes') }}" class="brand-logo center hide-on-med-and-down">Recipe Nation</a>
                 <a href="{{ url_for('recipes') }}" class="brand-logo center hide-on-large-only">RN</a>
@@ -57,8 +42,7 @@
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('recipes') }}">Home</a></li>
             <li><a href="{{ url_for('search') }}">Search</a></li>
-            <li><a href="" class="dropdown-trigger" data-target="dropdown2">Browse Recipes <i
-                        class="fas fa-caret-down"></i></a></li>
+            <li><a href="{{ url_for('all_recipes') }}">Browse All Recipes</a></li>
             {% if session.user %}
             <li><a href="{{ url_for('add_recipe') }}">Contribute</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Your Recipes</a></li>
@@ -90,7 +74,7 @@
     <footer class="page-footer footer-col valign-wrapper">
         <div class="container">
             © 2021 Copyright Holly Ford
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </footer>
 

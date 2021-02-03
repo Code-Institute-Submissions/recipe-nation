@@ -12,8 +12,8 @@
             <label for="query">Search Recipes</label>
         </div>
         <div class="col s12 m4">
-        <a href="{{ url_for('search') }}" class="btn">Reset</a>
         <button type="submit" class="btn"><i class="fas fa-search left"></i> Search</button>
+        <a href="{{ url_for('search') }}" class="btn button-style">Reset</a>
         </div>
      </div>
 </form>
@@ -53,8 +53,8 @@
     </div>
     <div class="s12">
         {% if session.user|lower == recipe.user_id|lower %}
-            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn-small">Edit</a>
-            <a class="waves-effect waves-light btn-small modal-trigger" href="#modal1">Delete</a>
+            <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn-small button-style">Edit</a>
+            <a class="waves-effect waves-light btn-small modal-trigger button-style" href="#modal1">Delete</a>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
@@ -63,8 +63,8 @@
                 <p>Well, you could add it again but you get the point!</p>
                 </div>
                 <div class="modal-footer">
-                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="modal-close waves-effect waves-green btn-flat">Delete</a>
-                <a href="{{ url_for('search') }}" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="modal-close waves-effect waves-light btn-small button-style">Delete</a>
+                <a href="{{ url_for('search') }}" class="modal-close waves-effect waves-light btn-small button-style">Cancel</a>
                 </div>
             </div>
         {% endif %}
