@@ -29,7 +29,7 @@
     <div class="row s12">
         <div class="col s12 m6">
             <h5>Ingredients</h5>
-            <ul>
+            <ul class="browser-default">
                 {% for ingredient in recipe.ingredients %}
                 <li class="list-style">{{ ingredient }}</li>
                 {% endfor %}
@@ -37,7 +37,7 @@
         </div>
         <div class="col s12 m6">
             <h5>Method</h5>
-            <ul>
+            <ul class="browser-default">
                 {% for method in recipe.method %}
                 <li class="list-style">{{ method }}</li>
                 {% endfor %}

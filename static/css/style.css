@@ -1,3 +1,7 @@
+body {
+    font-family: lato, sans-serif;
+}
+
 div h4 {
     text-align: center;
 }
@@ -8,4 +12,19 @@ div h4 {
 
 .list-style {
     margin-bottom: 1em;
+}
+
+
+/* colours */
+
+.nav-col {
+    background-color: #4db6ac;
+}
+
+.footer-col {
+    background-color: #4db6ac;
+}
+
+.car-col {
+    background-color: #b2dfdb;
 }

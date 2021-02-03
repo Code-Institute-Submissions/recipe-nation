@@ -163,7 +163,7 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
+                flash("Welcome, {}".format(request.form.get("username").capitalize()))
                 return redirect(url_for(
                     "profile", username=session["user"]))
 
@@ -191,7 +191,7 @@ def profile(username):
                     {"_id": recipe["user_id"]})["username"]
             except:
                 pass
-        return render_template("profile.html", username=username, recipes=recipes)
+        return render_template("profile.html", username=username.capitalize(), recipes=recipes)
 
     return redirect(url_for("login"))
 
