@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-pen prefix"></i>
-                    <input placeholder="Enter your desired username" id="username" name="username" 
-                    type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                    <input placeholder="Enter your desired username" id="username" name="username" type="text"
+                        minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                     <label for="username">Username</label>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                 <div class="input-field col s12">
                     <i class="fas fa-key prefix"></i>
                     <input placeholder="****************" id="password" name="password" type="password" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                     <label for="password">Password</label>
                 </div>
             </div>
@@ -29,12 +29,9 @@
         </div>
     </form>
     <div class="row">
-    <div class="col s12">
-        <p>Don't Already Have An Account? <a href="{{ url_for('register') }}">Register Here</a></p>
+        <div class="col s12">
+            <p>Don't Already Have An Account? <a href="{{ url_for('register') }}">Register Here</a></p>
+        </div>
     </div>
 </div>
-</div>
-
-
-
 {% endblock %}

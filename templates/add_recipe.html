@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="title-style s6"><h4>
-    Add Your Own Recipe To The Site!
-</h4>
+<div class="title-style s6">
+    <h4>
+        Add Your Own Recipe To The Site!
+    </h4>
 </div>
 
 <div class="row form-bg-col">
@@ -18,15 +19,16 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-blender prefix"></i>
-                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins" required>
+                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                    required>
                 <label for="prep_time">Prep Time</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-bacon prefix"></i>
-                <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate" 
-                placeholder="eg. 1 hr and 15 mins" required>
+                <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate"
+                    placeholder="eg. 1 hr and 15 mins" required>
                 <label for="cook_time">Cook Time</label>
             </div>
         </div>
@@ -36,7 +38,7 @@
                 <input id="ingredients" type="text" name="ingredients" minlength="3" maxlength="60" class="validate"
                     required>
                 <div id="dynamicInput"></div>
-                <label for="ingredients" >Ingredient 1</label>
+                <label for="ingredients">Ingredient 1</label>
                 <a class="waves-effect waves-light btn" onClick="addIngredient('dynamicInput');">Add Another
                     Ingredient</a>
             </div>
@@ -46,7 +48,7 @@
                 <i class="fas fa-wrench prefix"></i>
                 <input id="method" type="text" name="method" minlength="3" maxlength="300" class="validate" required>
                 <div id="dynamicInputTwo"></div>
-                <label for="method" >Step 1</label>
+                <label for="method">Step 1</label>
                 <a class="waves-effect waves-light btn" onClick="addMethod('dynamicInputTwo');">Add Another Step</a>
             </div>
         </div>
@@ -64,11 +66,12 @@
         <div class="row">
             <div class="file-field input-field">
                 <div class="btn">
-                    <span for="user_file">File</span>
+                    <span >File</span>
                     <input type="file" name="user_file" accept=".png, .jpg, .jpeg, .gif" required>
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload Image file (only .png, .jpg, .jpeg, .gif)">
+                    <input class="file-path validate" type="text"
+                        placeholder="Upload Image file (only .png, .jpg, .jpeg, .gif)">
                 </div>
             </div>
         </div>
