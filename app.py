@@ -259,13 +259,13 @@ def delete_recipe(recipe_id):
 @app.route("/all_recipes")
 def all_recipes():
     recipes = list(mongo.db.recipes.find())
-    if session["user"]:
-        for recipe in recipes:
-            try:
-                recipe["user_id"] = mongo.db.users.find_one(
-                    {"_id": recipe["user_id"]})["username"]
-            except:
-                pass
+    # if session["user"]:
+    for recipe in recipes:
+        try:
+            recipe["user_id"] = mongo.db.users.find_one(
+                {"_id": recipe["user_id"]})["username"]
+        except:
+            pass
     return render_template("all.html", recipes=recipes)
 
 
