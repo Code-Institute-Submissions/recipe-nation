@@ -57,6 +57,12 @@ div h5 {
 }
 
 
+/* flash */
+
+.flash-style {
+    text-align: center;
+}
+
 /* colours */
 
 .nav-col {
@@ -77,6 +83,10 @@ div h5 {
 }
 
 .form-bg-col{
+    background-color: #b2dfdb;
+}
+
+.flash-col {
     background-color: #b2dfdb;
 }
 
